@@ -4,21 +4,21 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "provinces")
-public class Province {
+@Table(name = "catergory")
+public class Catergory {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "province")
-    private Set<Customer> customers;
+    @OneToMany(mappedBy = "catergory")
+    private Set<Post> posts;
 
-    public Province() {
+    public Catergory() {
     }
 
-    public Province(String name) {
+    public Catergory(String name) {
         this.name = name;
     }
 
@@ -38,11 +38,11 @@ public class Province {
         this.name = name;
     }
 
-    public Set<Customer> getCustomers() {
-        return customers;
+    public Set<Post> getPosts() {
+        return posts;
     }
 
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
 }

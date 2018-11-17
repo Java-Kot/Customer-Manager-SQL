@@ -1,10 +1,10 @@
 package com.codegym.cms;
 
-import com.codegym.cms.formatter.ProvinceFormatter;
-import com.codegym.cms.service.CustomerService;
-import com.codegym.cms.service.ProvinceService;
-import com.codegym.cms.service.impl.CustomerServiecImpl;
-import com.codegym.cms.service.impl.ProvinceServiceImpl;
+import com.codegym.cms.formatter.CatergoryFormatter;
+import com.codegym.cms.service.CatergoryService;
+import com.codegym.cms.service.PostService;
+import com.codegym.cms.service.impl.CatergoryServiceImpl;
+import com.codegym.cms.service.impl.PostServiecImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -51,18 +51,18 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public CustomerService customerService(){
-        return new CustomerServiecImpl();
+    public PostService customerService() {
+        return new PostServiecImpl();
     }
 
     @Bean
-    public ProvinceService provinceService(){
-        return new ProvinceServiceImpl();
+    public CatergoryService catergoryService() {
+        return new CatergoryServiceImpl();
     }
 
     //Thymeleaf Configuration
     @Bean
-    public SpringResourceTemplateResolver templateResolver(){
+    public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views");
@@ -72,14 +72,14 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public TemplateEngine templateEngine(){
+    public TemplateEngine templateEngine() {
         TemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
     }
 
     @Bean
-    public ThymeleafViewResolver viewResolver(){
+    public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
@@ -105,17 +105,17 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/cms");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "123456" );
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
@@ -130,6 +130,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
+        registry.addFormatter(new CatergoryFormatter(applicationContext.getBean(CatergoryService.class)));
     }
 }

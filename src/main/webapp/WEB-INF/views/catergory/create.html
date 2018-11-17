@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create province</title>
+    <title>Create catergory</title>
 </head>
 <body>
-    <h1>Create province</h1>
+    <h1>Create catergory</h1>
     <p>
-        <a href="/provinces">Province list</a>
+        <a href="/catergory">Province list</a>
     </p>
     <th:block th:if="${message}">
         <p th:text="${message}"></p>
     </th:block>
-    <form th:action="@{/create-province}" th:object="${province}" method="post">
+    <form th:action="@{/create-catergory}" th:object="${catergory}" method="post">
         <table>
             <tr>
                 <td>Name:</td>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create province"></td>
+                <td><input type="submit" value="Create catergory"></td>
             </tr>
         </table>
     </form>

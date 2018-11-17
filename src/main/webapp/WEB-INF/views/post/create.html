@@ -2,37 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create customer</title>
+    <title>Create post</title>
 </head>
 <body>
-    <h1>Create customer</h1>
+    <h1>Create post</h1>
     <p>
-        <a href="/customers">Customer list</a>
+        <a href="/posts">Customer list</a>
     </p>
     <th:block th:if="${message}">
         <p th:text="${message}"></p>
     </th:block>
-    <form th:action="@{/create-customer}" th:object="${customer}" method="post">
+    <form th:action="@{/create-post}" th:object="${post}" method="post">
         <table>
             <tr>
                 <td>First name:</td>
-                <td><input type="text" th:field="*{firstName}"/></td>
+                <td><input type="text" th:field="*{titlePost}"/></td>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td><input type="text" th:field="*{lastName}"/></td>
+                <td><input type="text" th:field="*{bodyText}"/></td>
             </tr>
             <tr>
                 <td>Province:</td>
                 <td>
-                    <select th:field="*{province}">
+                    <select th:field="*{catergory}">
                         <option th:each="p : ${provinces}" th:value="${p.id}" th:text="${p.name}"></option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create customer"></td>
+                <td><input type="submit" value="Create post"></td>
             </tr>
         </table>
     </form>
